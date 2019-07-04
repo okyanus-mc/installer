@@ -15,6 +15,7 @@ import kotlin.system.exitProcess
 
 
 const val MC_VERSION = "1.14.3"
+
 const val DATA_ROOT = ".okyanus"
 const val FINISH_JAR = "server.jar"
 
@@ -47,7 +48,7 @@ fun main() {
     loaderLibs.forEach {
         val root = it.string("url") ?: throw Error("Invalid loader library response (no url)")
         val name = it.string("name") ?: throw Error("Invalid loader library response (no name)")
-        val path = "$LIBS_FOLDER${File.separator}$name.jar"
+        val path = "$LIBS_FOLDER${File.separator}${name.replace(':', '.')}.jar"
         val url = mavenNameToPath(name)
 
         if (File(path).exists())
